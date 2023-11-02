@@ -148,7 +148,7 @@ const CountryInside = () => {
                 No Borders
               </p>
             ) : (
-              <div className=" w-full gap-[0.625rem] grid grid-rows-1 grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
+              <ul className=" w-full gap-[0.625rem] grid grid-rows-1 grid-cols-[repeat(auto-fit,minmax(8rem,1fr))]">
                 {borders.map((border, index) => {
                   return (
                     <Link
@@ -161,7 +161,7 @@ const CountryInside = () => {
                     </Link>
                   );
                 })}
-              </div>
+              </ul>
             )}
           </div>
         </div>
