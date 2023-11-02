@@ -51,7 +51,7 @@ const CountryInside = () => {
 
   return (
     <div className="pt-4 px-[1.375rem] ">
-      <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem]">
+      <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem] items-center">
         <div className="dark:hidden">
           <img src={leftArrow} alt="left arrow icon" />
         </div>

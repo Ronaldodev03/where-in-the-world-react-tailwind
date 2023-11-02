@@ -12,7 +12,6 @@ const Card = ({ src, name, population, region, capital }) => {
           width={264}
           height={160}
           className=" rounded-t-[0.3125rem] object-cover w-full sm:h-[clamp(10rem,45.5vw,20rem)]  md:h-[clamp(10rem,20.5vw,15rem)] lg:h-[clamp(10rem,15.5vw,12.5rem)] xl:h-40 duration-200 hover:scale-105 cursor-pointer"
-          loading="lazy"
         />
       </div>
 

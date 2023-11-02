@@ -44,7 +44,7 @@ function Home() {
             className="flex items-center justify-between cursor-pointer"
             onClick={toggleDropDown}
           >
-            <p value="filter">{filter}</p>
+            <p>{filter}</p>
             <div className="pr-[1.1875rem] dark:hidden">
               <img src={chevron} alt="chevron icon" width={10} height={10} />
             </div>
