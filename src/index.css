@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700;6..12,800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------- */
+/* reset               */
+/* ------------------- */
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+
+  /*  font-size: 100%;
+  font-family: var(--main-font), sans-serif;
+  color: hsl(var(--light-color));
+  background: hsl(var(--primary-color));
+  margin: 0;
+  padding: 0;
+  font-family: "Spartan-Regular";
+  font-style: normal;
+  line-height: normal;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  overflow-y: scroll;
+  height: min(100vh, f.rem(1024)); */
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+
+/* ------------------- */
+/* custom utilities            */
+/* ------------------- */
+
+/* :root{
+  --px:
+}
+
+.container {
+  margin-inline: auto;
+  width: min(100% - calc(2 * 50px), 1110px);
+
+} */
+
+/* @layer{
+
+  .container{ 
+
+ 
+  @apply w[];
+ 
+  }
+
+} */
