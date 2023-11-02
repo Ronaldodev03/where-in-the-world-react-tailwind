@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Cards from "../components/Cards";
 import { search, chevron, chevronDark } from "../assets";
+import { useNavigation } from "react-router-dom";
+import Loader from "../components/Loader";
 
 function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [filter, setFilter] = useState("Filter by Region");
   const [inputValue, setInputValue] = useState("");
-
+  const navigation = useNavigation();
   const toggleDropDown = () => {
     setIsVisible(!isVisible);
   };
@@ -24,6 +26,10 @@ function Home() {
     setInputValue(event.target.value);
   };
 
+  if (navigation.state === "loading") {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="flex flex-col md:flex-row  md:justify-between w-full items-start">
@@ -39,17 +45,17 @@ function Home() {
           />
         </div>
         {/* dropdown */}
-        <div className=" py-[0.875rem] pl-6 shadow-custom-2 mt-10 md:mt-0 w-[clamp(12.5rem,50%,50%)] md:w-[12.5rem]  text-textBlack text-[clamp(0.75rem,2vw,0.875rem)] leading-5 relative bg-secondaryLight dark:bg-primaryDark dark:text-white ">
+        <div className="  shadow-custom-2 mt-10 md:mt-0 w-[clamp(12.5rem,50%,50%)] md:w-[12.5rem]  text-textBlack text-[clamp(0.75rem,2vw,0.875rem)] leading-5 relative bg-secondaryLight dark:bg-primaryDark dark:text-white ">
           <div
-            className="flex items-center justify-between cursor-pointer"
+            className="flex items-center justify-between px-6 py-[0.875rem] cursor-pointer"
             onClick={toggleDropDown}
           >
             <p>{filter}</p>
-            <div className="pr-[1.1875rem] dark:hidden">
+            <div className=" dark:hidden">
               <img src={chevron} alt="chevron icon" width={10} height={10} />
             </div>
 
-            <div className="pr-[1.1875rem] dark:block hidden">
+            <div className=" dark:block hidden">
               <img
                 src={chevronDark}
                 alt="chevron icon"
@@ -64,37 +70,37 @@ function Home() {
             }`}
           >
             <p
-              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Filter by Region")}
             >
               All
             </p>
             <p
-              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Africa")}
             >
               Africa
             </p>
             <p
-              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Americas")}
             >
               America
             </p>
             <p
-              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Asia")}
             >
               Asia
             </p>
             <p
-              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className="mb-[0.5rem] hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Europe")}
             >
               Europe
             </p>
             <p
-              className=" hover:bg-primaryLight dark:hover:bg-secondaryDark px-6 mx-auto w-[90%]"
+              className=" hover:bg-primaryLight dark:hover:bg-secondaryDark hover:rounded-sm px-6 mx-auto w-[90%]"
               onClick={() => handleFilter("Oceania")}
             >
               Oceania

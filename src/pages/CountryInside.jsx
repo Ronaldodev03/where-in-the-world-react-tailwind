@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useLoaderData } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { leftArrow, leftArrowDarkMode } from "../assets";
+import Loader from "../components/Loader";
 
 const CountryInside = () => {
   const country = useLoaderData();
   const navigate = useNavigate();
+  const navigation = useNavigation();
 
   const {
     name,
@@ -49,9 +51,16 @@ const CountryInside = () => {
   const langs = getArray(languages);
   const nativeNameCountry = getArray(name.nativeName);
 
+  if (navigation.state === "loading") {
+    return <Loader />;
+  }
+
   return (
-    <div className="pt-4 px-[1.375rem] ">
-      <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem] items-center">
+    <div className="pt-4 px-[1.375rem]">
+      <div
+        onClick={() => navigate("/")}
+        className=" cursor-pointer shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem] items-center dark:hover:bg-secondaryDark hover:bg-secondaryLight"
+      >
         <div className="dark:hidden">
           <img src={leftArrow} alt="left arrow icon" />
         </div>
@@ -63,12 +72,9 @@ const CountryInside = () => {
             height={450}
           />
         </div>
-        <button
-          onClick={() => navigate("/")}
-          className=" text-textBlack dark:text-white  text-sm font-light leading-5 py-[0.4375rem] "
-        >
+        <p className=" text-textBlack dark:text-white  text-sm font-light leading-5 py-[0.4375rem] ">
           Back
-        </button>
+        </p>
       </div>
 
       <div className="grid pt-16 lg:grid-cols-4 lg:gap-x-[clamp(4rem,8vw,8.75rem)] lg:place-items-center">

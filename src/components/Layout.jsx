@@ -38,28 +38,14 @@ const Layout = () => {
         <header
           className={`${styles.boxWidth} flex justify-between items-center `}
         >
-          <h1 className=" text-[clamp(0.875rem,3.5vw,1.5rem)] leading-5  md:leading-normal font-extrabold text-textBlack dark:text-white">
+          <h1 className=" cursor-pointer text-[clamp(0.875rem,3.5vw,1.5rem)] leading-5  md:leading-normal font-extrabold text-textBlack dark:text-white">
             Where in the world?
           </h1>
-          <div className="flex gap-2 ">
+          <div onClick={toggleTheme} className="flex gap-2 cursor-pointer ">
             {theme === "light" ? (
-              <img
-                onClick={toggleTheme}
-                src={moon}
-                alt="moon-icon"
-                className=" cursor-pointer"
-                width={20}
-                height={20}
-              />
+              <img src={moon} alt="moon-icon" width={20} height={20} />
             ) : (
-              <img
-                onClick={toggleTheme}
-                src={moonLight}
-                alt="moon-icon"
-                className=" cursor-pointer"
-                width={20}
-                height={20}
-              />
+              <img src={moonLight} alt="moon-icon" width={20} height={20} />
             )}
             <h2 className="text-textBlack dark:text-white text-[clamp(0.75rem,2vw,1rem)] leading-normal font-semibold ">
               Dark Mode
@@ -69,7 +55,7 @@ const Layout = () => {
       </div>
 
       <div
-        className={` ${styles.paddingX} ${styles.paddingY} min-h-screen bg-primaryLight dark:bg-secondaryDark`}
+        className={` ${styles.paddingX} py-6 md:py-12 min-h-screen bg-primaryLight dark:bg-secondaryDark`}
       >
         <main className={`${styles.boxWidth} `}>
           <Outlet />
