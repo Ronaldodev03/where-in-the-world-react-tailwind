@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Cards from "../components/Cards";
+import { search, chevron, chevronDark } from "../assets";
 
 function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [filter, setFilter] = useState("Filter by Region");
   const [inputValue, setInputValue] = useState("");
-
-  const path = "https://where-in-the-world-react-tailwind.vercel.app";
 
   const toggleDropDown = () => {
     setIsVisible(!isVisible);
@@ -29,14 +28,8 @@ function Home() {
     <>
       <div className="flex flex-col md:flex-row  md:justify-between w-full items-start">
         {/* search input */}
-        <div className=" flex bg-secondaryLight dark:bg-primaryDark  gap-[1.625rem] py-[0.875rem] shadow-custom-2 w-full md:w-[clamp(18.75rem,40vw,30rem)]">
-          <img
-            src={`${path}/src/assets/search.svg`}
-            alt="search icon"
-            className=" pl-8 cursor-pointer"
-            width={16}
-            height={16}
-          />
+        <div className=" flex bg-secondaryLight dark:bg-primaryDark  gap-[1.625rem] py-[0.875rem] shadow-custom-2 w-full md:w-[clamp(18.75rem,40vw,30rem)] pl-8 cursor-pointer">
+          <img src={search} alt="search icon" width={16} height={16} />
           <input
             type="text"
             placeholder="Search for a country..."
@@ -52,20 +45,18 @@ function Home() {
             onClick={toggleDropDown}
           >
             <p value="filter">{filter}</p>
-            <img
-              src={`${path}/src/assets/chevron.svg`}
-              alt="chevron icon"
-              className="pr-[1.1875rem] dark:hidden"
-              width={10}
-              height={10}
-            />
-            <img
-              src={`${path}/src/assets/chevron-dark-mode.svg`}
-              alt="chevron icon"
-              className="pr-[1.1875rem] dark:block hidden"
-              width={10}
-              height={10}
-            />
+            <div className="pr-[1.1875rem] dark:hidden">
+              <img src={chevron} alt="chevron icon" width={10} height={10} />
+            </div>
+
+            <div className="pr-[1.1875rem] dark:block hidden">
+              <img
+                src={chevronDark}
+                alt="chevron icon"
+                width={10}
+                height={10}
+              />
+            </div>
           </div>
           <div
             className={`  py-4 cursor-pointer top-[3.25rem] left-[0] shadow-custom-2 absolute z-10 w-full bg-secondaryLight dark:bg-primaryDark rounded-[0.3125rem] transition-opacity duration-300 ease-in-out  ${

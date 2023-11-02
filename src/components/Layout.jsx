@@ -1,11 +1,10 @@
 import { Outlet } from "react-router-dom";
 import styles from "../style";
 import { useState, useEffect } from "react";
+import { moon, moonLight } from "../assets";
 
 const Layout = () => {
   const [theme, setTheme] = useState(null);
-
-  const path = "https://where-in-the-world-react-tailwind.vercel.app";
 
   /* toggles the theme */
   useEffect(() => {
@@ -46,7 +45,7 @@ const Layout = () => {
             {theme === "light" ? (
               <img
                 onClick={toggleTheme}
-                src={`${path}/src/assets/moon.svg`}
+                src={moon}
                 alt="moon-icon"
                 className=" cursor-pointer"
                 width={20}
@@ -55,7 +54,7 @@ const Layout = () => {
             ) : (
               <img
                 onClick={toggleTheme}
-                src={`${path}/src/assets/moon-light.svg`}
+                src={moonLight}
                 alt="moon-icon"
                 className=" cursor-pointer"
                 width={20}
