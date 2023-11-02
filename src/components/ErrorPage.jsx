@@ -5,20 +5,22 @@ const ErrorPage = () => {
   const error = useRouteError();
   /* console.log(error.message); */
   const navigate = useNavigate();
+  const path = "https://where-in-the-world-react-tailwind.vercel.app";
+
   return (
     <div>
       {/* back button */}
       <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem] mb-4">
         <img
           className="dark:hidden"
-          src="/src/assets/left-arrow.svg"
+          src={`${path}/src/assets/left-arrow.svg`}
           alt="left arrow icon"
           width={20}
           height={20}
         />
         <img
           className="hidden dark:block"
-          src="/src/assets/left-arrow-dark-mode.svg"
+          src={`${path}/src/assets/left-arrow-dark-mode.svg`}
           alt="left arrow icon"
           width={20}
           height={20}

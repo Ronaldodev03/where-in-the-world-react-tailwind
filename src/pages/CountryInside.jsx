@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 const CountryInside = () => {
   const country = useLoaderData();
   const navigate = useNavigate();
+  const path = "https://where-in-the-world-react-tailwind.vercel.app";
+
   const {
     name,
     flags,
@@ -52,13 +54,15 @@ const CountryInside = () => {
       <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem]">
         <img
           className="dark:hidden"
-          src="/src/assets/left-arrow.svg"
+          src={`${path}/src/assets/left-arrow.svg`}
           alt="left arrow icon"
         />
         <img
           className="hidden dark:block"
-          src="/src/assets/left-arrow-dark-mode.svg"
+          src={`${path}/src/assets/left-arrow-dark-mode.svg`}
           alt="left arrow icon"
+          width={560}
+          height={450}
         />
         <button
           onClick={() => navigate("/")}

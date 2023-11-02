@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 const Layout = () => {
   const [theme, setTheme] = useState(null);
 
+  const path = "https://where-in-the-world-react-tailwind.vercel.app";
+
   /* toggles the theme */
   useEffect(() => {
     if (theme === "dark") {
@@ -44,7 +46,7 @@ const Layout = () => {
             {theme === "light" ? (
               <img
                 onClick={toggleTheme}
-                src="/src/assets/moon.svg"
+                src={`${path}/src/assets/moon.svg`}
                 alt="moon-icon"
                 className=" cursor-pointer"
                 width={20}
@@ -53,7 +55,7 @@ const Layout = () => {
             ) : (
               <img
                 onClick={toggleTheme}
-                src="/src/assets/moon-light.svg"
+                src={`${path}/src/assets/moon-light.svg`}
                 alt="moon-icon"
                 className=" cursor-pointer"
                 width={20}

@@ -6,6 +6,8 @@ function Home() {
   const [filter, setFilter] = useState("Filter by Region");
   const [inputValue, setInputValue] = useState("");
 
+  const path = "https://where-in-the-world-react-tailwind.vercel.app";
+
   const toggleDropDown = () => {
     setIsVisible(!isVisible);
   };
@@ -29,7 +31,7 @@ function Home() {
         {/* search input */}
         <div className=" flex bg-secondaryLight dark:bg-primaryDark  gap-[1.625rem] py-[0.875rem] shadow-custom-2 w-full md:w-[clamp(18.75rem,40vw,30rem)]">
           <img
-            src="src/assets/search.svg"
+            src={`${path}/src/assets/search.svg`}
             alt="search icon"
             className=" pl-8 cursor-pointer"
             width={16}
@@ -51,14 +53,14 @@ function Home() {
           >
             <p value="filter">{filter}</p>
             <img
-              src="./src/assets/chevron.svg"
+              src={`${path}/src/assets/chevron.svg`}
               alt="chevron icon"
               className="pr-[1.1875rem] dark:hidden"
               width={10}
               height={10}
             />
             <img
-              src="./src/assets/chevron-dark-mode.svg"
+              src={`${path}/src/assets/chevron-dark-mode.svg`}
               alt="chevron icon"
               className="pr-[1.1875rem] dark:block hidden"
               width={10}
