@@ -2,13 +2,14 @@
 import { useLoaderData } from "react-router-dom";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { leftArrow, leftArrowDarkMode } from "../assets";
+import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 
 const CountryInside = () => {
-  const country = useLoaderData();
+  const data = useLoaderData();
   const navigate = useNavigate();
   const navigation = useNavigation();
-
+  //console.log(data);
   const {
     name,
     flags,
@@ -20,8 +21,19 @@ const CountryInside = () => {
     languages,
     subregion,
     borders,
-  } = country[0];
-  //console.log(country[0]);
+  } = data.country[0];
+
+  //get border name through
+  const getBorder = (cca3) => {
+    const [selectedCountry] = data.countries.filter((c) => c.cca3 == cca3);
+    return selectedCountry ? selectedCountry.name.common : null;
+  };
+
+  //get country through cca3
+  const getCountry = (cca3) => {
+    const [selectedCountry] = data.countries.filter((c) => c.cca3 == cca3);
+    return selectedCountry ? selectedCountry.name.official : null;
+  };
 
   //next key for country[0].currencies is variable, so we need this function to get the key
   function getFirstKey(object) {
@@ -29,7 +41,6 @@ const CountryInside = () => {
       return;
     }
     const keys = Object.keys(object);
-    //console.log(keys);
     if (keys.length > 0) {
       return object[keys];
     }
@@ -138,15 +149,16 @@ const CountryInside = () => {
               </p>
             ) : (
               <div className=" w-full gap-[0.625rem] grid grid-rows-1 grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
-                {borders.map((lan, index) => {
+                {borders.map((border, index) => {
                   return (
-                    <p
+                    <Link
+                      to={`/country/name/${getCountry(border)}`}
                       key={index}
-                      className=" flex justify-center shadow-custom-5 px-[2rem] py-[0.6rem] text-xs font-light dark:text-white dark:bg-primaryDark rounded-sm
+                      className=" flex justify-center shadow-custom-5 px-[2rem] py-[0.6rem] text-xs font-light dark:text-white dark:bg-primaryDark rounded-sm whitespace-nowrap
               ]"
                     >
-                      {lan}
-                    </p>
+                      {getBorder(border)}
+                    </Link>
                   );
                 })}
               </div>

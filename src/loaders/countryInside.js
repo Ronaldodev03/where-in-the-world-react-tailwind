@@ -1,7 +1,8 @@
-import { getCountry } from "../data/countries";
+import { getCountries, getCountry } from "../data/countries";
 
 export async function loader({ params }) {
   //console.log(params);
+  const countries = await getCountries();
   const country = await getCountry(params.countryName);
   //console.log(country);
 
@@ -11,5 +12,8 @@ export async function loader({ params }) {
       statusText: "Country not found",
     });
   }
-  return country;
+  return {
+    country,
+    countries,
+  };
 }
