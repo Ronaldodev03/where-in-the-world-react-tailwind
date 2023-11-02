@@ -52,14 +52,17 @@ const CountryInside = () => {
   return (
     <div className="pt-4 px-[1.375rem] ">
       <div className=" shadow-custom-4 flex px-6  w-[6.5rem] gap-2 dark:bg-primaryDark rounded-[0.125rem]">
-        <img className="dark:hidden" src={leftArrow} alt="left arrow icon" />
-        <img
-          className="hidden dark:block"
-          src={leftArrowDarkMode}
-          alt="left arrow icon"
-          width={560}
-          height={450}
-        />
+        <div className="dark:hidden">
+          <img src={leftArrow} alt="left arrow icon" />
+        </div>
+        <div className="hidden dark:block">
+          <img
+            src={leftArrowDarkMode}
+            alt="left arrow icon"
+            width={560}
+            height={450}
+          />
+        </div>
         <button
           onClick={() => navigate("/")}
           className=" text-textBlack dark:text-white  text-sm font-light leading-5 py-[0.4375rem] "
