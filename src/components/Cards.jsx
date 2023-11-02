@@ -41,6 +41,7 @@ const Cards = ({ filterName, inputValue }) => {
           key={index}
           src={country.flags.svg}
           name={country.name.common}
+          nameOfficial={country.name.official}
           population={country.population}
           region={country.region}
           capital={country.capital}

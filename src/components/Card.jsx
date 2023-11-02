@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-const Card = ({ src, name, population, region, capital }) => {
+const Card = ({ src, name, nameOfficial, population, region, capital }) => {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/country/name/${name}`)}
+      onClick={() => navigate(`/country/name/${nameOfficial}`)}
       className="shadow-custom-3 bg-secondaryLight dark:bg-primaryDark  rounded-[0.3125rem] duration-200 hover:scale-105 cursor-pointer"
     >
       <div>
@@ -18,12 +18,12 @@ const Card = ({ src, name, population, region, capital }) => {
       </div>
 
       <div className="p-6">
-        <h2 className=" text-textBlack dark:text-white  font-extrabold leading-[1.625rem] text-lg mb-4">
+        <h2 className=" text-textBlack dark:text-white  font-extrabold leading-[1.625rem] text-lg mb-4 ">
           {name}
         </h2>
         <p className=" text-textBlack dark:text-white  text-sm font-light leading-4 mb-2">
           <span className=" font-semibold  ">Population: </span>
-          {population}
+          {new Intl.NumberFormat().format(population)}
         </p>
         <p className=" text-textBlack dark:text-white  text-sm font-light leading-4 mb-2">
           <span className=" font-semibold  ">Region: </span>
