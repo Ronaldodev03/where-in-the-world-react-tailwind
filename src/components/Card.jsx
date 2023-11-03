@@ -16,6 +16,7 @@ const Card = ({ src, name, nameOfficial, population, region, capital }) => {
   const opacityProgress = useTransform(scrollYProgress, [0, 0.8], [0.1, 1]);
   const opacityProgressMobile = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
   const xSlice = useTransform(scrollYProgress, [0, 0.8], [-300, 1]);
+  const ySlice = useTransform(scrollYProgress, [0, 0.8], [250, 1]);
 
   //updating state according to window width
   const handleResize = () => {
@@ -42,6 +43,7 @@ const Card = ({ src, name, nameOfficial, population, region, capital }) => {
       style={{
         scale: windowWidth >= largeBreakpoint ? scaleProgress : 1, // width >= breackpoint => fires animation
         x: windowWidth < mediumBreakpoint ? xSlice : 1,
+        y: windowWidth < mediumBreakpoint ? ySlice : 1,
         opacity:
           windowWidth < mediumBreakpoint
             ? opacityProgressMobile
