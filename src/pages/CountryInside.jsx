@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useLoaderData } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { leftArrow, leftArrowDarkMode } from "../assets";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ const CountryInside = () => {
   const data = useLoaderData();
   const navigate = useNavigate();
   const navigation = useNavigation();
-  console.log(data.country[0]);
+  // console.log(data.country[0]);
   const {
     name,
     flags,
@@ -59,6 +60,8 @@ const CountryInside = () => {
     }
     return [];
   }
+  //saving  window width in state
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const langs = getArray(languages);
   const nativeNameCountry = getArray(name.nativeName);
 
@@ -76,6 +79,7 @@ const CountryInside = () => {
     if (!data.country[0].currencies) return "N/A";
     const currencies = [];
     const entries = Object.entries(data.country[0].currencies);
+
     for (const [_, val] of entries) {
       currencies.push(val.name);
     }
@@ -85,6 +89,27 @@ const CountryInside = () => {
       return "N/A";
     }
   };
+
+  /* START: for animation */
+
+  //updating state according to window width
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  // event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    //unmount listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // breakpoint
+  const largeBreakpoint = 1024;
+  /* END: for animation */
 
   if (navigation.state === "loading") {
     return <Loader />;
@@ -115,8 +140,14 @@ const CountryInside = () => {
       <div className="grid pt-16 lg:grid-cols-4 lg:gap-x-[clamp(4rem,8vw,8.75rem)] lg:place-items-center">
         <m.div
           variants={{
-            hidden: { opacity: 0, y: 40 },
-            visible: { opacity: 1, y: 0 },
+            hidden:
+              windowWidth >= largeBreakpoint
+                ? { opacity: 0, y: 40 }
+                : { opacity: 0, x: -40 },
+            visible:
+              windowWidth >= largeBreakpoint
+                ? { opacity: 1, y: 0 }
+                : { opacity: 1, x: 0 },
           }}
           initial="hidden"
           animate="visible"

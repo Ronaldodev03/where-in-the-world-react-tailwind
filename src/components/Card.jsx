@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as m, useScroll, useTransform } from "framer-motion";
 const Card = ({ src, name, nameOfficial, population, region, capital }) => {
+  //saving  window width in state
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const ref = useRef(null);
 
@@ -10,14 +12,36 @@ const Card = ({ src, name, nameOfficial, population, region, capital }) => {
     target: ref,
     offset: ["0 1", "1.33 1"],
   });
-  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+  const scaleProgress = useTransform(scrollYProgress, [0, 0.8], [0.8, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 0.8], [0.1, 1]);
+  const xSlice = useTransform(scrollYProgress, [0, 0.8], [-400, 1]);
+
+  //updating state according to window width
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  // event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    //unmount listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // breakpoint
+  const largeBreakpoint = 1024;
+  const mediumBreakpoint = 600;
+
   return (
     <m.div
       ref={ref}
       style={{
-        scale: scaleProgress,
-        opacity: opacityProgress,
+        scale: windowWidth >= largeBreakpoint ? scaleProgress : 1, // width >= breackpoint => fires animation
+        x: windowWidth < mediumBreakpoint ? xSlice : 1,
+        opacity: opacityProgress, // width >= breackpoint => fires animation
       }}
     >
       <div
