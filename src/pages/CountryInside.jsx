@@ -4,6 +4,7 @@ import { useNavigate, useNavigation } from "react-router-dom";
 import { leftArrow, leftArrowDarkMode } from "../assets";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
+import { motion as m } from "framer-motion";
 
 const CountryInside = () => {
   const data = useLoaderData();
@@ -112,14 +113,32 @@ const CountryInside = () => {
       </div>
 
       <div className="grid pt-16 lg:grid-cols-4 lg:gap-x-[clamp(4rem,8vw,8.75rem)] lg:place-items-center">
-        <div className=" lg:col-span-2 rounded-md row-span-2 w-full ">
+        <m.div
+          variants={{
+            hidden: { opacity: 0, y: 40 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5 }}
+          className=" lg:col-span-2 rounded-md row-span-2 w-full "
+        >
           <img
             src={flags.svg}
             alt={flags.alt}
             className=" rounded-md lg:object-conver w-full max-h-[25rem]"
           />
-        </div>
-        <div className=" lg:col-span-2 w-full lg:grid lg:grid-row-2 row-span-2  ">
+        </m.div>
+        <m.div
+          variants={{
+            hidden: { opacity: 0, x: 75 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5 }}
+          className=" lg:col-span-2 w-full lg:grid lg:grid-row-2 row-span-2  "
+        >
           <div className="pt-12 lg:gap-8 lg:pt-0 md:flex md:justify-between w-full md:mx-auto ">
             <div>
               <h2 className=" text-textBlack dark:text-white font-extrabold leading-normal text-[1.375rem] mb-4 whitespace-nowrap">
@@ -168,7 +187,9 @@ const CountryInside = () => {
                 className=" text-textBlack dark:text-white text-sm font-light leading-8 cursor-pointer "
               >
                 <span className=" font-semibold ">Map Location: </span>
-                <span className="border-b-2 ">Google Maps</span>
+                <span className="border-b-2 border-primaryDark dark:border-secondaryLight">
+                  Google Maps
+                </span>
               </Link>
             </div>
           </div>
@@ -197,7 +218,7 @@ const CountryInside = () => {
               </ul>
             )}
           </div>
-        </div>
+        </m.div>
       </div>
     </div>
   );
