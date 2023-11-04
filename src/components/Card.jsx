@@ -5,6 +5,7 @@ import { motion as m, useScroll, useTransform } from "framer-motion";
 const Card = ({ src, name, nameOfficial, population, region, capital }) => {
   //saving  window width in state
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const navigate = useNavigate();
   const ref = useRef(null);
 
