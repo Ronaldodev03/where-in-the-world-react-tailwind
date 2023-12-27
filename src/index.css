@@ -104,13 +104,12 @@ li {
 
 } */
 
-/* @layer{
-
-  .container{ 
-
- 
-  @apply w[];
- 
+@layer {
+  .slide-in {
+    @apply fixed left-0 top-0 h-screen w-full origin-bottom bg-yellow-700;
   }
 
-} */
+  .slide-out {
+    @apply fixed left-0 top-0 h-screen w-full origin-top bg-red-800;
+  }
+}
