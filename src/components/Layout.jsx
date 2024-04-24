@@ -1,10 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigation } from "react-router-dom";
 import styles from "../style";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useScroll, motion } from "framer-motion";
 
 const Layout = () => {
   const [theme, setTheme] = useState(null);
+  const { scrollYProgress } = useScroll(); // Hook de Framer Motion para detectar el progreso del scroll en Y
+
+  const { pathname } = useLocation();
+  const { state } = useNavigation();
 
   /* toggles the theme */
   useEffect(() => {
@@ -30,13 +35,21 @@ const Layout = () => {
   };
 
   return (
-    <>
+    <div className=" min-h-screen bg-primaryLight dark:bg-secondaryDark duration-300 ease-linear">
+      {/* scroll shower | horizontal line */}
+
+      {pathname === "/" && state === "idle" && (
+        <motion.div
+          className="h-1 bg-black dark:bg-white transition-all fixed top-0 origin-left z-30 w-full"
+          style={{ scaleX: scrollYProgress }}
+        />
+      )}
       <div
         /* I put "relative" here bc otherwise the shadow is not shown-custom-1 in the UI */
-        className={`${styles.paddingX} ${styles.paddingY} w-full bg-secondaryLight dark:bg-primaryDark relative shadow-custom-1 `}
+        className={`${styles.paddingX} ${styles.paddingY} w-full bg-secondaryLight  dark:bg-primaryDark //relative shadow-custom-1 sticky top-0 z-20 `}
       >
         <header
-          className={`${styles.boxWidth} flex justify-between items-center `}
+          className={`${styles.boxWidth} flex justify-between items-center`}
         >
           <Link to="/">
             <h1 className=" cursor-pointer text-[clamp(0.875rem,3.5vw,1.5rem)] leading-5  md:leading-normal font-extrabold text-textBlack dark:text-white">
@@ -67,14 +80,12 @@ const Layout = () => {
         </header>
       </div>
 
-      <div
-        className={` ${styles.paddingX} py-6 md:py-12 min-h-screen bg-primaryLight dark:bg-secondaryDark duration-300 ease-linear`}
-      >
+      <div className={` ${styles.paddingX} py-6 md:py-12`}>
         <main className={`${styles.boxWidth} `}>
           <Outlet />
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

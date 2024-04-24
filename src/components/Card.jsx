@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as m, useScroll, useTransform } from "framer-motion";
 const Card = ({ src, name, nameOfficial, population, region, capital }) => {
-  //saving  window width in state
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   const navigate = useNavigate();
   const ref = useRef(null);
 
@@ -15,45 +12,18 @@ const Card = ({ src, name, nameOfficial, population, region, capital }) => {
   });
   const scaleProgress = useTransform(scrollYProgress, [0, 0.8], [0.8, 1]);
   const opacityProgress = useTransform(scrollYProgress, [0, 0.8], [0.1, 1]);
-  const opacityProgressMobile = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
-  const xSlice = useTransform(scrollYProgress, [0, 0.8], [-300, 1]);
-  const ySlice = useTransform(scrollYProgress, [0, 0.8], [50, 1]);
-
-  //updating state according to window width
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  // event listener
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    //unmount listener
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // breakpoint
-  const largeBreakpoint = 1024;
-  const mediumBreakpoint = 600;
 
   return (
     <m.div
       ref={ref}
       style={{
-        scale: windowWidth >= largeBreakpoint ? scaleProgress : 1, // width >= breackpoint => fires animation
-        x: windowWidth < mediumBreakpoint ? xSlice : 1,
-        y: windowWidth < mediumBreakpoint ? ySlice : 1,
-        opacity:
-          windowWidth < mediumBreakpoint
-            ? opacityProgressMobile
-            : opacityProgress, // width >= breackpoint => fires animation
+        scale: scaleProgress,
+        opacity: opacityProgress,
       }}
     >
       <div
         onClick={() => navigate(`/country/name/${nameOfficial}`)}
-        className="duration-200 hover:scale-105 shadow-custom-3 bg-secondaryLight dark:bg-primaryDark  rounded-[0.3125rem]  cursor-pointer"
+        className="duration-200 hover:scale-105 shadow-custom-3 bg-secondaryLight dark:bg-primaryDark  rounded-[0.3125rem]  cursor-pointer max-w-[35rem] mx-auto"
       >
         <div>
           <img
